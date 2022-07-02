@@ -5,9 +5,6 @@ def new(p=False):  # p est un booléen à mettre Vrai pour afficher les résulta
     nbJours = int(file.readline())
     joursRetard = int(file.readline())
 
-    ressource = [1, 1, 2, 1, 1, 2]  # [0,0,1,0,0,1]   ressources converties avec -1
-    action = [1, 1, 2, 2, 2, 1]  # [1,1,2,2,2,1]
-
     datePremierEnfile = [-1] * nbTypes
     dateDernierEnfile = [-1] * nbTypes
 
@@ -17,7 +14,8 @@ def new(p=False):  # p est un booléen à mettre Vrai pour afficher les résulta
     dic = {}
 
     for i in range(nbJours):  # i correspond à la date (qui part du jour 0 jusqu'à nbjours-1)
-        r = ressource[i] - 1  # fait correspondre le numéro de ressource avec l'indice
+        r, a = file.readline().split()
+        r = int(r)-1
 
         # enlève les commandes trop vieilles pour la ressource r
         datelimite = i - joursRetard
@@ -28,7 +26,7 @@ def new(p=False):  # p est un booléen à mettre Vrai pour afficher les résulta
                 datePremierEnfile[r] = dic[nomListePrem][1]
                 del dic[nomListePrem]  # pas obligé sauf si pb de mémoire !!!
                 nbActionsRetardeesParType[r] = nbActionsRetardeesParType[r] - 1
-        if action[i] == 1:  # commande
+        if a == "1":  # commande
             if stockParType[r] != 0:  # la ressource attend des commandes
                 stockParType[r] = stockParType[r] - 1
                 nbsCommandesSatisfaites[r] = nbsCommandesSatisfaites[r] + 1
@@ -78,7 +76,5 @@ def new(p=False):  # p est un booléen à mettre Vrai pour afficher les résulta
                     nbActionsRetardeesParType[r] = nbActionsRetardeesParType[r] - 1
                     stockParType[r] = stockParType[r] - 1
                     nbsCommandesSatisfaites[r] = nbsCommandesSatisfaites[r] + 1
-    for k in range(nbTypes):
-        print(nbsCommandesSatisfaites[k])
 
     return nbsCommandesSatisfaites
