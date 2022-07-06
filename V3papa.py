@@ -1,4 +1,4 @@
-def new(p=False):  # p est un booléen à mettre Vrai pour afficher les résultats
+def new():  # p est un booléen à mettre Vrai pour afficher les résultats
     file = open("entry.txt", "r")
 
     nbTypes = int(file.readline())

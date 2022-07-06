@@ -1,7 +1,7 @@
 from random import *
-nbJours = 50000
-nbTypes = 5000
-joursRetard = 500
+nbJours = 500000
+nbTypes = 100
+joursRetard = 50000
 f = open("entry.txt", "w")
 f.write(str(nbTypes)+"\n")
 f.write(str(nbJours)+"\n")
